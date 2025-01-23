@@ -50,7 +50,7 @@ A equipe está organizada conforme a tabela abaixo:
 
 2. Navegue até o diretório do projeto:
     ```bash
-        cd nome_repositorio
+        cd U4C3-embarcatech
 
 3. Cmpile e execute o projeto utilizando o Pico SDK no VS Code.
 
