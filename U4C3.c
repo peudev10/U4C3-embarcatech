@@ -1,5 +1,10 @@
 #include <stdio.h>
 #include "pico/stdlib.h"
+#include "hardware/pio.h"
+#include "hardware/clocks.h"
+
+#include "ws2818b.pio.h"
+
 
 #define KEYPAD_ROWS 4
 #define KEYPAD_COLS 4
