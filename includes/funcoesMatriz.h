@@ -53,11 +53,31 @@ void npClear(npLED_t leds[]) {
 }
 
 // Escreve o buffer de pixels na matriz.    
-void npWrite(npLED_t leds[]) {
+void matrizWrite(npLED_t leds[]) {
   for (uint i = 0; i < LED_COUNT; ++i) {
     pio_sm_put_blocking(np_pio, sm, leds[i].G);
     pio_sm_put_blocking(np_pio, sm, leds[i].R);
     pio_sm_put_blocking(np_pio, sm, leds[i].B);
   }
-  sleep_us(100); 
+}
+
+
+int getIndex(int x, int y) {
+    // Se a linha for par (0, 2, 4), percorremos da esquerda para a direita.
+    // Se a linha for ímpar (1, 3), percorremos da direita para a esquerda.
+    if (y % 2 == 0) {
+        return 24-(y * 5 + x); // Linha par (esquerda para direita).
+    } else {
+        return 24-(y * 5 + (4 - x)); // Linha ímpar (direita para esquerda).
+    }
+}
+
+
+void spriteWirite(int matriz[5][5][3], npLED_t leds[]) { 
+  for(int linha = 0; linha < 5; linha++){
+    for(int coluna = 0; coluna < 5; coluna++){
+      int posicao = getIndex(linha, coluna);
+      setMatrizLED(posicao, matriz[coluna][linha][0], matriz[coluna][linha][1], matriz[coluna][linha][2], leds);
+    }
+  }
 }
