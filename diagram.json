@@ -16,6 +16,7 @@
       "id": "neopixels",
       "top": -151.8,
       "left": -19.74,
+      "rotate": 180,
       "attrs": { "rows": "5", "cols": "5", "matrixLayout": "serpentine" }
     },
     {
@@ -31,9 +32,6 @@
     [ "pico:GP1", "$serialMonitor:TX", "", [] ],
     [ "pico:GND.6", "bz1:1", "black", [ "h0" ] ],
     [ "pico:GP21", "bz1:2", "green", [ "h0" ] ],
-    [ "neopixels:VCC", "pico:VBUS", "red", [ "v19.2", "h67.2" ] ],
-    [ "neopixels:GND", "pico:GND.8", "black", [ "v38.4", "h220.8" ] ],
-    [ "pico:GP7", "neopixels:DIN", "green", [ "h0" ] ],
     [ "keypad1:C4", "pico:GP8", "violet", [ "v0" ] ],
     [ "keypad1:C2", "pico:GP10", "violet", [ "v105.6", "h0", "v9.6" ] ],
     [ "keypad1:C3", "pico:GP9", "violet", [ "v0" ] ],
@@ -41,7 +39,10 @@
     [ "keypad1:R4", "pico:GP12", "purple", [ "v0" ] ],
     [ "keypad1:R3", "pico:GP13", "purple", [ "v0" ] ],
     [ "keypad1:R2", "pico:GP14", "purple", [ "v0" ] ],
-    [ "keypad1:R1", "pico:GP15", "purple", [ "v0" ] ]
+    [ "keypad1:R1", "pico:GP15", "purple", [ "v0" ] ],
+    [ "neopixels:DIN", "pico:GP7", "green", [ "v-8", "h80.68", "v220.8" ] ],
+    [ "neopixels:GND", "pico:GND.8", "black", [ "v1.6", "h215.08", "v153.6" ] ],
+    [ "neopixels:VCC", "pico:VBUS", "red", [ "v-17.6", "h205.48" ] ]
   ],
   "dependencies": {}
 }
