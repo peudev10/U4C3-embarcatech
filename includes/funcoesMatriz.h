@@ -61,6 +61,13 @@ void matrizWrite(npLED_t leds[]) {
   }
 }
 
+void turnOffLEDs(npLED_t leds[]) {
+  for (uint i = 0; i < LED_COUNT; ++i) {
+    setMatrizLED(i, 0, 0, 0, leds);
+  }
+  matrizWrite(leds);
+}
+
 
 int getIndex(int x, int y) {
     // Se a linha for par (0, 2, 4), percorremos da esquerda para a direita.

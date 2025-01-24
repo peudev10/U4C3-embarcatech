@@ -9,130 +9,17 @@
 #include "includes/teclado.h"
 #include "includes/convertePixels.h"
 
+#include "animacoes/teste.h"
 
 #define MATRIX_ROWS 5
 #define MATRIX_COLS 5
 #define MATRIX_DEPTH 3
 
+void a1();
 
 int main() {
     npLED_t leds[LED_COUNT];
     int rgb_matrix[MATRIX_ROWS][MATRIX_COLS][MATRIX_DEPTH];
-    
-    uint32_t animation[16][25] = {
-{
-0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xff00dd2a, 
-0x00000000, 0x00000000, 0x00000000, 0xff00dd2a, 0x00000000, 
-0x00000000, 0x00000000, 0x00000000, 0xff00dd2a, 0x00000000, 
-0x00000000, 0x00000000, 0x00000000, 0xff00dd2a, 0x00000000, 
-0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xff00dd2a
-},
-{
-0x00000000, 0x00000000, 0x00000000, 0xff00dd2a, 0xff00dd2a, 
-0x00000000, 0x00000000, 0xff00dd2a, 0x00000000, 0x00000000, 
-0x00000000, 0x00000000, 0xff00dd2a, 0x00000000, 0x00000000, 
-0x00000000, 0x00000000, 0xff00dd2a, 0x00000000, 0x00000000, 
-0x00000000, 0x00000000, 0x00000000, 0xff00dd2a, 0xff00dd2a
-},
-{
-0x00000000, 0x00000000, 0xff00dd2a, 0xff00dd2a, 0x00000000, 
-0x00000000, 0xff00dd2a, 0x00000000, 0x00000000, 0xff00dd2a, 
-0x00000000, 0xff00dd2a, 0x00000000, 0x00000000, 0xff00dd2a, 
-0x00000000, 0xff00dd2a, 0x00000000, 0x00000000, 0xff00dd2a, 
-0x00000000, 0x00000000, 0xff00dd2a, 0xff00dd2a, 0x00000000
-},
-{
-0x00000000, 0xff00dd2a, 0xff00dd2a, 0x00000000, 0x00000000, 
-0xff00dd2a, 0x00000000, 0x00000000, 0xff00dd2a, 0x00000000, 
-0xff00dd2a, 0x00000000, 0x00000000, 0xff00dd2a, 0x00000000, 
-0xff00dd2a, 0x00000000, 0x00000000, 0xff00dd2a, 0x00000000, 
-0x00000000, 0xff00dd2a, 0xff00dd2a, 0x00000000, 0x00000000
-},
-{
-0xff00dd2a, 0xff00dd2a, 0x00000000, 0x00000000, 0xff00dd2a, 
-0x00000000, 0x00000000, 0xff00dd2a, 0x00000000, 0xff00dd2a, 
-0x00000000, 0x00000000, 0xff00dd2a, 0x00000000, 0xff00dd2a, 
-0x00000000, 0x00000000, 0xff00dd2a, 0x00000000, 0xff00dd2a, 
-0xff00dd2a, 0xff00dd2a, 0x00000000, 0x00000000, 0xff00dd2a
-},
-{
-0xff00dd2a, 0x00000000, 0x00000000, 0xff00dd2a, 0x00000000, 
-0x00000000, 0xff00dd2a, 0x00000000, 0xff00dd2a, 0x00000000, 
-0x00000000, 0xff00dd2a, 0x00000000, 0xff00dd2a, 0x00000000, 
-0x00000000, 0xff00dd2a, 0x00000000, 0xff00dd2a, 0x00000000, 
-0xff00dd2a, 0x00000000, 0x00000000, 0xff00dd2a, 0xff00dd2a
-},
-{
-0x00000000, 0x00000000, 0xff00dd2a, 0x00000000, 0x00000000, 
-0xff00dd2a, 0x00000000, 0xff00dd2a, 0x00000000, 0x00000000, 
-0xff00dd2a, 0x00000000, 0xff00dd2a, 0x00000000, 0x00000000, 
-0xff00dd2a, 0x00000000, 0xff00dd2a, 0x00000000, 0x00000000, 
-0x00000000, 0x00000000, 0xff00dd2a, 0xff00dd2a, 0xff00dd2a
-},
-{
-0x00000000, 0xff00dd2a, 0x00000000, 0x00000000, 0x00000000, 
-0x00000000, 0xff00dd2a, 0x00000000, 0x00000000, 0x00000000, 
-0x00000000, 0xff00dd2a, 0x00000000, 0x00000000, 0x00000000, 
-0x00000000, 0xff00dd2a, 0x00000000, 0x00000000, 0x00000000, 
-0x00000000, 0xff00dd2a, 0xff00dd2a, 0xff00dd2a, 0x00000000
-},
-{
-0xff00dd2a, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 
-0xff00dd2a, 0x00000000, 0x00000000, 0x00000000, 0xff00dd2a, 
-0xff00dd2a, 0x00000000, 0x00000000, 0x00000000, 0xff00dd2a, 
-0xff00dd2a, 0x00000000, 0x00000000, 0x00000000, 0xff00dd2a, 
-0xff00dd2a, 0xff00dd2a, 0xff00dd2a, 0x00000000, 0xff00dd2a
-},
-{
-0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xff00dd2a, 
-0x00000000, 0x00000000, 0x00000000, 0xff00dd2a, 0x00000000, 
-0x00000000, 0x00000000, 0x00000000, 0xff00dd2a, 0x00000000, 
-0x00000000, 0x00000000, 0x00000000, 0xff00dd2a, 0xff00dd2a, 
-0xff00dd2a, 0xff00dd2a, 0x00000000, 0xff00dd2a, 0x00000000
-},
-{
-0x00000000, 0x00000000, 0x00000000, 0xff00dd2a, 0xff00dd2a, 
-0x00000000, 0x00000000, 0xff00dd2a, 0x00000000, 0x00000000, 
-0x00000000, 0x00000000, 0xff00dd2a, 0x00000000, 0x00000000, 
-0x00000000, 0x00000000, 0xff00dd2a, 0xff00dd2a, 0xff00dd2a, 
-0xff00dd2a, 0x00000000, 0xff00dd2a, 0x00000000, 0x00000000
-},
-{
-0x00000000, 0x00000000, 0xff00dd2a, 0xff00dd2a, 0x00000000, 
-0x00000000, 0xff00dd2a, 0x00000000, 0x00000000, 0xff00dd2a, 
-0x00000000, 0xff00dd2a, 0x00000000, 0x00000000, 0xff00dd2a, 
-0x00000000, 0xff00dd2a, 0xff00dd2a, 0xff00dd2a, 0xff00dd2a, 
-0x00000000, 0xff00dd2a, 0x00000000, 0x00000000, 0xff00dd2a
-},
-{
-0x00000000, 0xff00dd2a, 0xff00dd2a, 0x00000000, 0x00000000, 
-0xff00dd2a, 0x00000000, 0x00000000, 0xff00dd2a, 0x00000000, 
-0xff00dd2a, 0x00000000, 0x00000000, 0xff00dd2a, 0x00000000, 
-0xff00dd2a, 0xff00dd2a, 0xff00dd2a, 0xff00dd2a, 0x00000000, 
-0xff00dd2a, 0x00000000, 0x00000000, 0xff00dd2a, 0x00000000
-},
-{
-0xff00dd2a, 0xff00dd2a, 0x00000000, 0x00000000, 0x00000000, 
-0x00000000, 0x00000000, 0xff00dd2a, 0x00000000, 0x00000000, 
-0x00000000, 0x00000000, 0xff00dd2a, 0x00000000, 0x00000000, 
-0xff00dd2a, 0xff00dd2a, 0xff00dd2a, 0x00000000, 0x00000000, 
-0x00000000, 0x00000000, 0xff00dd2a, 0x00000000, 0x00000000
-},
-{
-0xff00dd2a, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 
-0x00000000, 0xff00dd2a, 0x00000000, 0x00000000, 0x00000000, 
-0x00000000, 0xff00dd2a, 0x00000000, 0x00000000, 0x00000000, 
-0xff00dd2a, 0xff00dd2a, 0x00000000, 0x00000000, 0x00000000, 
-0x00000000, 0xff00dd2a, 0x00000000, 0x00000000, 0x00000000
-},
-{
-0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 
-0xff00dd2a, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 
-0xff00dd2a, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 
-0xff00dd2a, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 
-0xff00dd2a, 0x00000000, 0x00000000, 0x00000000, 0x00000000
-}
-};
 
     stdio_init_all(); 
     keypad_init();
@@ -141,56 +28,58 @@ int main() {
 
     while (true) {
 
-        npClear(leds);
-        int i = 0;
-        int j = 0;
-
-        for(i = 0; i < 3; i++) {
-            for (j = 0; i < LED_COUNT; j++) {
-                convertARGBtoMatriz(animation[j], rgb_matrix);
-                spriteWirite(rgb_matrix, leds);
-                matrizWrite(leds);
-                sleep_ms(500);
-            }
-        }
-
         char key = keypad_read();
-        sleep_ms(1000);
        
         if (key == '1') {
-            printf("Você pressionou 1\n"); // implementação da funcionalidade 1
+            printf("Você pressionou 1\n"); // implementação da animação 1
+            a1(16, leds, rgb_matrix);
         } else if (key == '2') {
-            printf("Você pressionou 2\n"); // implementação da funcionalidade 2
+            printf("Você pressionou 2\n"); // implementação da animação 2
         } else if (key == '3') {
-            printf("Você pressionou 3\n"); // implementação da funcionalidade 3
+            printf("Você pressionou 3\n"); // implementação da animação 3
         } else if (key == '4') {
-            printf("Você pressionou 4\n"); // implementação da funcionalidade 4
+            printf("Você pressionou 4\n"); // implementação da animação 4
         } else if (key == '5') {
-            printf("Você pressionou 5\n"); // implementação da funcionalidade 5
+            printf("Você pressionou 5\n"); // implementação da animação 5
         } else if (key == '6') {
-            printf("Você pressionou 6\n"); // implementação da funcionalidade 6
+            printf("Você pressionou 6\n"); // implementação da animação 6
         } else if (key == '7') {
-            printf("Você pressionou 7\n"); // implementação da funcionalidade 7
+            printf("Você pressionou 7\n"); // implementação da animação 7
         } else if (key == '8') {
-            printf("Você pressionou 8\n"); // implementação da funcionalidade 8
+            printf("Você pressionou 8\n"); // implementação da animação 8
         } else if (key == '9') {
-            printf("Você pressionou 9\n"); // implementação da funcionalidade 9
+            printf("Você pressionou 9\n"); // implementação da animação 9
         } else if (key == '0') {
-            printf("Você pressionou 0\n"); // implementação da funcionalidade 10
+            printf("Você pressionou 0\n"); // implementação da animação 10
         } else if (key == 'A') {
-            printf("Você pressionou A\n"); // implementação da funcionalidade 11
+            printf("Você pressionou A\n"); // implementação da animação 11
         } else if (key == 'B') {
-            printf("Você pressionou B\n"); // implementação da funcionalidade 12
+            printf("Você pressionou B\n"); // implementação da animação 12
         } else if (key == 'C') {
-            printf("Você pressionou C\n"); // implementação da funcionalidade 13
+            printf("Você pressionou C\n"); // implementação da animação 13
         } else if (key == 'D') {
-            printf("Você pressionou D\n"); // implementação da funcionalidade 14
+            printf("Você pressionou D\n"); // implementação da animação 14
         } else if (key == '*') {
-            printf("Você pressionou *\n"); // implementação da funcionalidade 15
+            printf("Você pressionou *\n"); // implementação da animação 15
         } else if (key == '#') {
-            printf("Você pressionou #\n"); // implementação da funcionalidade 16
+            printf("Você pressionou #\n"); // implementação da animação 16
         } else {
-            printf("Tecla não reconhecida\n"); // implementação da funcionalidade 17
+            printf("Tecla não reconhecida\n"); // implementação da animação 17
         }
+
+        sleep_ms(500);
     }
+ 
+}
+
+
+// Na estrutura da função a1, o parâmetro frames é o número de frames na animação, definida na hora da criação do array animacao1.
+void a1(int frames, npLED_t leds[], int rgb_matrix[MATRIX_ROWS][MATRIX_COLS][MATRIX_DEPTH]) {
+        for (int j = 0; j < frames; j++) {
+            convertARGBtoMatriz(animacao1[j], rgb_matrix);
+            spriteWirite(rgb_matrix, leds);
+            matrizWrite(leds); 
+            sleep_ms(100); // Define a velocidade da animação
+        }
+        turnOffLEDs(leds); // Adicione trun off após o loop interno para desligar a matriz
 }
